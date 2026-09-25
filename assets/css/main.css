@@ -606,6 +606,16 @@ figcaption {
   cursor: pointer;
 }
 .faq summary::-webkit-details-marker { display: none; }
+/* Each question is an H3 (sits under the "Frequently asked questions" H2)
+   so search engines and AI tools read it as a question heading. It takes
+   the summary's styling rather than the prose H3 size. */
+.faq__question {
+  margin: 0;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
 .faq summary::after {
   content: "+";
   flex: none;

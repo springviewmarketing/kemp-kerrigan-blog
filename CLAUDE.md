@@ -79,7 +79,7 @@ No brand guide exists; these values come from the live main site. Do not introdu
 - **Layout**: mobile first, 20px gutters on phones (32px from 768px). Content max width 1040px. Tap targets at least 44px. Navigation collapses behind a "Menu" button below 960px, but only when JS runs (`.js` class), so it still works without JavaScript.
 - **Card grid**: 1 column on phones, 2 from 640px, 3 from 1024px (implemented as a 6-track grid). Classes `card-grid--m2-N` and `card-grid--m3-N` (post count mod 2 / mod 3) fill every row with no gaps: a leftover single post becomes a wide horizontal featured card (the newest); on desktop, two leftover posts share the first row half and half.
 - **No frameworks, no jQuery.** The only JS is `assets/js/nav.js`, plus the one-line `js` class setter in the head.
-- **Accessibility**: semantic HTML, skip link, visible `:focus-visible` rings (tan-dark on light, tan on charcoal), AA contrast, `aria-current` on Blog in the nav, breadcrumb `nav`, FAQs as native `<details>`.
+- **Accessibility**: semantic HTML, skip link, visible `:focus-visible` rings (tan-dark on light, tan on charcoal), AA contrast, `aria-current` on Blog in the nav, breadcrumb `nav`, FAQs as native `<details>` with each question as an `<h3>` inside `<summary>` (answers stay in the HTML when collapsed, so crawlers read them).
 
 ## Page components
 
