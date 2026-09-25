@@ -1,0 +1,28 @@
+{%- assign p = site.practice -%}
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__practice">
+      <a class="site-footer__logo" href="{{ p.main_site }}">
+        <img src="{{ '/assets/brand/kk-logo-header.png' | relative_url }}" alt="Kemp & Kerrigan home" width="220" height="37" loading="lazy">
+      </a>
+      <address>
+        {{ p.name }}<br>
+        {{ p.street }}<br>
+        {{ p.locality }}, {{ p.city }}<br>
+        {{ p.postcode }}
+      </address>
+      <p class="site-footer__phone">Tel <a href="tel:{{ p.phone_tel }}">{{ p.phone_display }}</a></p>
+    </div>
+    <nav class="site-footer__links" aria-label="Practice links">
+      <ul>
+        <li><a href="{{ p.map_url }}">Opening hours on Google</a></li>
+        <li><a href="{{ p.instagram }}">Instagram</a></li>
+        <li><a href="{{ p.facebook }}">Facebook</a></li>
+        <li><a href="{{ p.main_site }}">Main website</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="site-footer__base">
+    <p>&copy; {{ site.time | date: '%Y' }} {{ p.name }}</p>
+  </div>
+</footer>

@@ -1,0 +1,94 @@
+# Kemp & Kerrigan blog. Built by GitHub Pages' own Jekyll (no Actions workflow).
+#
+# GOING LIVE on https://blog.kempkerrigan.co.uk: change url to
+# "https://blog.kempkerrigan.co.uk", baseurl to "", preview_mode to false,
+# and add a CNAME file containing blog.kempkerrigan.co.uk. Nothing else changes.
+
+url: "https://springviewmarketing.github.io"
+baseurl: "/kemp-kerrigan-blog"
+
+# While true: every page gets <meta name="robots" content="noindex, nofollow">
+# and robots.txt disallows everything.
+preview_mode: true
+
+title: "Kemp & Kerrigan Opticians"
+description: "Eye care advice and news from Adam Kerrigan, independent optometrist in Fulwood, Sheffield."
+lang: en-GB
+locale: en_GB
+timezone: Europe/London
+
+author:
+  name: "Kemp & Kerrigan"
+  url: "https://kempkerrigan.co.uk/"
+
+logo: /assets/brand/kk-logo.png
+
+social:
+  name: "Kemp & Kerrigan"
+  links:
+    - https://www.instagram.com/kempandkerrigan/
+    - https://www.facebook.com/kempandkerrigan/
+
+# Details used in the header, footer, call-to-action box and structured data.
+practice:
+  name: "Kemp & Kerrigan"
+  main_site: "https://kempkerrigan.co.uk/"
+  eye_exams_url: "https://kempkerrigan.co.uk/#eyeexamination"
+  about_url: "https://kempkerrigan.co.uk/#aboutus"
+  phone_display: "0114 430 0221"
+  phone_tel: "+441144300221"
+  phone_schema: "+44 114 430 0221"
+  street: "8 Brooklands Avenue"
+  locality: "Fulwood"
+  city: "Sheffield"
+  postcode: "S10 4GA"
+  country: "GB"
+  map_url: "https://www.google.com/maps/place/?q=place_id:ChIJ1ZvvVgCBeUgRqcCb0rHUDLI"
+  instagram: "https://www.instagram.com/kempandkerrigan/"
+  facebook: "https://www.facebook.com/kempandkerrigan/"
+  photo: /assets/images/adam-kerrigan-eye-examination.webp
+
+permalink: /:title/
+
+# No theme: GitHub Pages would otherwise add its default Primer theme.
+theme: null
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+
+feed:
+  path: feed.xml
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  auto_ids: true
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: default
+      # Default share image for pages that are not posts.
+      image:
+        path: /assets/images/adam-kerrigan-eye-examination.webp
+        width: 1600
+        height: 1067
+        alt: "Adam Kerrigan carrying out an eye examination at Kemp & Kerrigan in Fulwood, Sheffield"
+
+exclude:
+  - CLAUDE.md
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .bundle
+  - .jekyll-cache

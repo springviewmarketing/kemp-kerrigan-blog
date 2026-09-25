@@ -1,0 +1,20 @@
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-header__logo" href="{{ site.practice.main_site }}">
+      <img src="{{ '/assets/brand/kk-logo-header.png' | relative_url }}" alt="Kemp & Kerrigan home" width="220" height="37">
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="nav-toggle__icon" aria-hidden="true"></span>
+      <span class="nav-toggle__label">Menu</span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul class="site-nav__list">
+        <li><a href="{{ site.practice.main_site }}">Home</a></li>
+        <li><a href="{{ site.practice.eye_exams_url }}">Eye examinations</a></li>
+        <li><a href="{{ site.practice.about_url }}">About</a></li>
+        <li><a href="{{ '/' | relative_url }}" class="is-current" aria-current="{% if page.url == '/' %}page{% else %}true{% endif %}">Blog</a></li>
+      </ul>
+      <a class="button site-nav__book" href="{{ site.practice.eye_exams_url }}">Book an eye test</a>
+    </nav>
+  </div>
+</header>

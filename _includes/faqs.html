@@ -1,0 +1,10 @@
+<section class="faqs" aria-labelledby="faqs-heading">
+  <h2 id="faqs-heading">Frequently asked questions</h2>
+  {%- for faq in page.faqs %}
+  <details class="faq">
+    <summary>{{ faq.question }}</summary>
+    {%- assign answer_html = faq.answer | markdownify %}
+    <div class="faq__answer">{% include fix-links.html html=answer_html %}</div>
+  </details>
+  {%- endfor %}
+</section>

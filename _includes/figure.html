@@ -1,0 +1,9 @@
+{%- comment -%}
+  Image inside a post. Usage:
+  {% include figure.html src="/assets/images/name.webp" alt="What the image shows" caption="Optional caption" class="wide" width="1600" height="1067" %}
+  alt is required: without it the build fails on purpose.
+  class="wide" breaks out wider than the text column. width/height default to 1600 x 1067 (3:2).
+{%- endcomment -%}
+{%- assign alt = include.alt | strip -%}
+{%- if alt == "" -%}{% include ERROR-an-image-in-this-post-has-no-alt-text--add-alt-to-the-figure-include %}{%- endif -%}
+<figure class="figure{% if include.class %} {{ include.class }}{% endif %}"><img src="{{ include.src | relative_url }}" alt="{{ alt | escape }}" width="{{ include.width | default: 1600 }}" height="{{ include.height | default: 1067 }}" loading="lazy" decoding="async">{% if include.caption %}<figcaption>{{ include.caption | markdownify | remove: '<p>' | remove: '</p>' | strip }}</figcaption>{% endif %}</figure>

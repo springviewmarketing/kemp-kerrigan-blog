@@ -1,0 +1,21 @@
+---
+title: "Kemp & Kerrigan blog"
+description: "Eye care advice and news from Adam Kerrigan, independent optometrist in Fulwood, Sheffield."
+---
+<div class="container blog-home">
+  <header class="page-intro">
+    <h1>Kemp &amp; Kerrigan blog</h1>
+    <p class="lead">Eye care advice and news from Adam Kerrigan, independent optometrist in Fulwood, Sheffield.</p>
+  </header>
+
+  {%- assign count = site.posts.size -%}
+  {%- if count > 0 %}
+  <div class="card-grid card-grid--m2-{{ count | modulo: 2 }} card-grid--m3-{{ count | modulo: 3 }}">
+    {%- for post in site.posts %}
+    {% include post-card.html post=post heading="h2" eager=forloop.first %}
+    {%- endfor %}
+  </div>
+  {%- else %}
+  <p>No posts yet.</p>
+  {%- endif %}
+</div>

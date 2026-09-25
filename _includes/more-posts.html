@@ -1,0 +1,12 @@
+{%- assign others = site.posts | where_exp: "p", "p.url != page.url" -%}
+{%- if others.size > 0 -%}
+{%- assign count = others.size | at_most: 3 -%}
+<section class="more-posts container" aria-labelledby="more-posts-heading">
+  <h2 id="more-posts-heading">More from the blog</h2>
+  <div class="card-grid card-grid--m2-{{ count | modulo: 2 }} card-grid--m3-{{ count | modulo: 3 }}">
+    {%- for post in others limit: 3 %}
+    {% include post-card.html post=post heading="h3" %}
+    {%- endfor %}
+  </div>
+</section>
+{%- endif -%}

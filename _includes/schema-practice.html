@@ -1,0 +1,22 @@
+{%- assign p = site.practice -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Optician",
+  "@id": "{{ p.main_site }}#practice",
+  "name": {{ p.name | jsonify }},
+  "url": "https://kempkerrigan.co.uk",
+  "telephone": {{ p.phone_schema | jsonify }},
+  "image": {{ p.photo | absolute_url | jsonify }},
+  "logo": {{ site.logo | absolute_url | jsonify }},
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": {{ p.street | append: ", " | append: p.locality | jsonify }},
+    "addressLocality": {{ p.city | jsonify }},
+    "postalCode": {{ p.postcode | jsonify }},
+    "addressCountry": {{ p.country | jsonify }}
+  },
+  "hasMap": {{ p.map_url | jsonify }},
+  "sameAs": [{{ p.instagram | jsonify }}, {{ p.facebook | jsonify }}]
+}
+</script>

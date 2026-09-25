@@ -1,0 +1,63 @@
+---
+layout: default
+---
+{%- comment -%}
+  Build checks. Each one deliberately includes a file that does not exist, so
+  GitHub Pages refuses to publish and the error message names the problem,
+  e.g. "Could not locate the included file 'ERROR-hero-image-has-no-alt-text...'".
+{%- endcomment -%}
+{%- assign hero_alt = page.image.alt | strip -%}
+{%- if page.image.path == nil -%}{% include ERROR-post-has-no-hero-image--set-image-path-in-front-matter %}{%- endif -%}
+{%- if hero_alt == "" -%}{% include ERROR-hero-image-has-no-alt-text--set-image-alt-in-front-matter %}{%- endif -%}
+{%- if content contains 'alt=""' -%}{% include ERROR-an-image-in-this-post-has-no-alt-text %}{%- endif -%}
+{%- capture house_style_check %}{{ page.title }}{{ page.description }}{{ page.image_caption }}{{ page.image.alt }}{{ page.faqs | jsonify }}{{ content }}{% endcapture -%}
+{%- if house_style_check contains "—" or house_style_check contains "&mdash;" -%}{% include ERROR-em-dash-found--house-style-bans-em-dashes %}{%- endif -%}
+{%- for faq in page.faqs -%}
+  {%- assign q = faq.question | strip -%}{%- assign a = faq.answer | strip -%}
+  {%- if q == "" or a == "" -%}{% include ERROR-faq-needs-both-a-question-and-an-answer %}{%- endif -%}
+{%- endfor -%}
+
+{%- assign words = content | strip_html | number_of_words -%}
+{%- assign minutes = words | plus: 199 | divided_by: 200 | at_least: 1 -%}
+{%- assign published = page.date | date: "%Y-%m-%d" -%}
+{%- assign modified = page.last_modified_at | default: page.date | date: "%Y-%m-%d" -%}
+<article class="post">
+  <div class="post__surface">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="{{ '/' | relative_url }}">Blog</a></li>
+        <li><span aria-current="page">{{ page.title }}</span></li>
+      </ol>
+    </nav>
+
+    <header class="post__header">
+      <h1>{{ page.title }}</h1>
+      <p class="post__meta">
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time>
+        {%- if modified > published %}<span class="post__meta-sep" aria-hidden="true">&middot;</span>Updated <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ page.last_modified_at | date: "%-d %B %Y" }}</time>{% endif %}
+        <span class="post__meta-sep" aria-hidden="true">&middot;</span>{{ minutes }} min read
+      </p>
+    </header>
+
+    <figure class="post__hero">
+      <img src="{{ page.image.path | relative_url }}" alt="{{ page.image.alt | escape }}" width="{{ page.image.width | default: 1600 }}" height="{{ page.image.height | default: 1067 }}" fetchpriority="high" decoding="async">
+      {%- if page.image_caption %}
+      <figcaption>{{ page.image_caption | markdownify | remove: '<p>' | remove: '</p>' | strip }}</figcaption>
+      {%- endif %}
+    </figure>
+
+    <div class="prose">
+{% include fix-links.html html=content %}
+    </div>
+
+    {%- if page.faqs and page.faqs.size > 0 %}
+    {% include faqs.html %}
+    {%- endif %}
+
+    {% include cta.html %}
+  </div>
+</article>
+
+{% include more-posts.html %}
+
+{% include schema-post.html %}

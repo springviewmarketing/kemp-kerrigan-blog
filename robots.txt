@@ -1,0 +1,15 @@
+---
+layout: null
+permalink: /robots.txt
+sitemap: false
+---
+{%- if site.preview_mode -%}
+# Preview mode: keep search engines out until the blog goes live.
+User-agent: *
+Disallow: /
+{%- else -%}
+User-agent: *
+Allow: /
+
+Sitemap: {{ '/sitemap.xml' | absolute_url }}
+{%- endif %}

@@ -1,0 +1,13 @@
+{%- comment -%}
+  Adds site.baseurl to root-relative links (href="/...") in include.html, so
+  posts can link to "/post-name/" and keep working when baseurl changes.
+  Links that already carry the baseurl are left as they are.
+{%- endcomment -%}
+{%- assign base = site.baseurl | default: "" -%}
+{%- if base == "" -%}
+{{ include.html }}
+{%- else -%}
+{%- capture with_base %}href="{{ base }}/{% endcapture -%}
+{%- capture doubled %}href="{{ base }}{{ base }}/{% endcapture -%}
+{{ include.html | replace: 'href="/', with_base | replace: doubled, with_base }}
+{%- endif -%}

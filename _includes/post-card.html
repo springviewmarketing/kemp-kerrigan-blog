@@ -1,0 +1,16 @@
+{%- comment -%}
+  One post card. Params: post, heading (h2 or h3), eager (true for the first
+  card on the blog home, which sits above the fold).
+{%- endcomment -%}
+{%- assign post = include.post -%}
+{%- assign tag = include.heading | default: "h2" -%}
+<article class="card">
+  <div class="card__media">
+    <img src="{{ post.image.path | relative_url }}" alt="" width="{{ post.image.width | default: 1600 }}" height="{{ post.image.height | default: 1067 }}"{% unless include.eager %} loading="lazy"{% endunless %} decoding="async">
+  </div>
+  <div class="card__body">
+    <{{ tag }} class="card__title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></{{ tag }}>
+    <p class="card__meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-d %B %Y" }}</time></p>
+    <p class="card__excerpt">{{ post.description }}</p>
+  </div>
+</article>
